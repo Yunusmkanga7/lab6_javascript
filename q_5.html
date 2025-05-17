@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h2>Form Submission</h2>
+<form id="myForm">
+  <input type="text" id="fullname" placeholder="Full Name"><br>
+  <input type="email" id="email" placeholder="Email"><br>
+  <button type="submit">Submit</button>
+</form>
+<div id="formErrors"></div>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  let name = document.getElementById("fullname").value;
+  let email = document.getElementById("email").value;
+  let errors = "";
+
+  if (name.length < 3) errors += "Name too short.<br>";
+  if (!email.includes("@")) errors += "Invalid email.<br>";
+
+  let errBox = document.getElementById("formErrors");
+  errBox.innerHTML = errors;
+
+  setTimeout(() => {
+    errBox.innerHTML = "";
+  }, 3000);
+
+  if (errors === "") {
+    let data = {
+      fullname: name,
+      email: email
+    };
+    console.log("Data to send:", data);
+  }
+});
+</script>
+
+</body>
+</html>

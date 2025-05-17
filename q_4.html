@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Three Numbers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e5e5e5;
+      padding: 20px;
+    }
+    .container {
+      width: 600px;
+      margin: auto;
+      background-color: #fff;
+      border: 1px solid #aaa;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .description {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    .inputs, .outputs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .inputs input, .outputs input {
+      width: 30%;
+      padding: 8px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .outputs input {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      font-weight: bold;
+    }
+    .buttons {
+      text-align: left; 
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 8px 20px;
+      font-size: 14px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #aaa;
+      margin: 20px 0;
+    }
+    label.section-label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px 0;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Sort Three Numbers</h2>
+
+  <div class="description">
+    Enter three numbers in the boxes below, then click one of the buttons to sort the numbers in ascending or descending order.
+  </div>
+
+  <label class="section-label">Enter the numbers:</label>
+  <div class="inputs">
+    <input type="number" id="num1" placeholder="Number 1">
+    <input type="number" id="num2" placeholder="Number 2">
+    <input type="number" id="num3" placeholder="Number 3">
+  </div>
+
+  <div class="buttons">
+    <button onclick="sortNumbers('asc')">Sort in Ascending Order</button>
+    <button onclick="sortNumbers('desc')">Sort in Descending Order</button>
+  </div>
+
+  <hr> <!-- Line between buttons and outputs -->
+
+  <label class="section-label">Sorted numbers:</label>
+  <div class="outputs">
+    <input type="text" id="out1" readonly>
+    <input type="text" id="out2" readonly>
+    <input type="text" id="out3" readonly>
+  </div>
+</div>
+
+<script>
+  function sortNumbers(order) {
+    let n1 = parseFloat(document.getElementById('num1').value);
+    let n2 = parseFloat(document.getElementById('num2').value);
+    let n3 = parseFloat(document.getElementById('num3').value);
+
+    if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+      alert("Please enter all three numbers.");
+      return;
+    }
+
+    let numbers = [n1, n2, n3];
+
+    if (order === 'asc') {
+      numbers.sort((a, b) => a - b);
+    } else {
+      numbers.sort((a, b) => b - a);
+    }
+
+    document.getElementById('out1').value = numbers[0];
+    document.getElementById('out2').value = numbers[1];
+    document.getElementById('out3').value = numbers[2];
+  }
+</script>
+
+</body>
+</html>

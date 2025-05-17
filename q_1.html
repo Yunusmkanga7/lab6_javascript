@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1</title>
+</head>
+<body>
+<h2>What is your name?</h2>
+<input type="text" id="username">
+<button onclick="displayWelcome()">Submit</button>
+<p id="message1"></p>
+
+<script>
+function displayWelcome() {
+  let name = document.getElementById("username").value;
+  let message = document.getElementById("message1");
+  if (name.length > 3) {
+    message.innerText = "Welcome " + name ;
+  } else {
+    message.innerText = "Name must be more than 3 characters.";
+  }
+}
+</script>
+
+</body>
+</html>

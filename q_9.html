@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Pizza Order Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #d9d9d9;
+  }
+  form {
+    width: 620px;
+    margin: auto;
+    background-color: #f0f0f0;
+    border: 1px solid #aaa;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  fieldset {
+    border: 1px solid #aaa;
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+  legend {
+    font-weight: bold;
+    padding: 0 5px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td {
+    padding: 5px 8px;
+    vertical-align: top;
+  }
+  label {
+    font-weight: normal;
+    white-space: nowrap;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select,
+  textarea {
+    width: 140px;
+    padding: 4px 6px;
+    font-size: 14px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+  textarea {
+    width: 100%;
+    height: 50px;
+    resize: vertical;
+  }
+  .checkbox-group label,
+  .radio-group label {
+    font-weight: normal;
+    margin-right: 15px;
+    white-space: nowrap;
+  }
+  .buttons {
+    text-align: left;
+    margin-top: 12px;
+  }
+  button {
+    padding: 7px 20px;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid #999;
+    color: #000;
+  }
+  button:hover {
+    background-color: #ddd;
+  }
+</style>
+</head>
+<body>
+
+<form id="pizzaOrderForm" onsubmit="return validateForm()">
+<fieldset>
+  <legend style="text-align: center;">PIZZA ORDER FORM</legend>
+  <fieldset>
+    <legend>Delivery Address</legend>
+    <table>
+      <tr>
+        <td><label for="fullname">Full Name:</label></td>
+        <td><input type="text" id="fullname" name="fullname" placeholder="Full Name" /></td>
+        <td><label for="street">Stree Address:</label></td>
+        <td><input type="text" id="street" name="street" placeholder="Address" /></td>
+      </tr>
+      <tr>
+        <td><label for="phone">Phone:</label></td>
+        <td><input type="text" id="phone" name="phone" placeholder="Phone" maxlength="10" /></td>
+        <td><label for="email">Email:</label></td>
+        <td><input type="email" id="email" name="email" placeholder="Email" /></td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td><input type="password" id="password" name="password" placeholder="Password" /></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Payment Information</legend>
+    <table>
+      <tr>
+        <td><label for="cardtype">Card Type:</label></td>
+        <td>
+          <select id="cardtype" name="cardtype">
+            <option value="">--Select Card Type--</option>
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="Amex">American Express</option>
+          </select>
+        </td>
+        <td><label for="cardnumber">Card Number:</label></td>
+        <td><input type="text" id="cardnumber" name="cardnumber" placeholder="Card Number" /></td>
+      </tr>
+      <tr>
+        <td><label for="cardname">Name on Card:</label></td>
+        <td><input type="text" id="cardname" name="cardname" placeholder="Name" /></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Customize Your Pizza</legend>
+    <table>
+      <tr>
+        <td><label for="pizzasize">Pizza size :</label></td>
+        <td>
+          <select id="pizzasize" name="pizzasize">
+            <option value="">--Select Size--</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large" selected>Large</option>
+          </select>
+        </td>
+        <td><label for="quantity">Quantity:</label></td>
+        <td><input type="number" id="quantity" name="quantity" min="1" /></td>
+      </tr>
+      <tr class="spices">
+        <td><label>Spices :</label></td>
+        <td colspan="3">
+          <label><input type="checkbox" name="spices" value="Black pepper" /> Black pepper</label>
+          <label><input type="checkbox" name="spices" value="Bell peppers" /> Bell peppers</label>
+          <label><input type="checkbox" name="spices" value="Mayonnaise" /> mayonnaise</label>
+        </td>
+      </tr>
+      <tr class="other-meat-row">
+        <td colspan="2" style="vertical-align: top;">
+          <label for="otherreq">Other Requirements:</label><br />
+          <textarea id="otherreq" name="otherreq" placeholder="Any Other Requirements"></textarea>
+        </td>
+        <td colspan="2" style="vertical-align: top;">
+          <label>Meat :</label><br />
+          <label><input type="radio" name="meat" value="Fish" /> Fish</label>
+          <label><input type="radio" name="meat" value="Cow" /> Cow</label>
+          <label><input type="radio" name="meat" value="Chicken" /> Chicken</label>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <div class="buttons">
+    <button type="reset">Clear Order</button>
+    <button type="submit">Place Order</button>
+  </div>
+
+  </fieldset>
+</form>
+
+<script>
+function validateForm() {
+  const fullname = document.getElementById('fullname').value.trim();
+  const street = document.getElementById('street').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const cardtype = document.getElementById('cardtype').value;
+  const cardnumber = document.getElementById('cardnumber').value.trim();
+  const cardname = document.getElementById('cardname').value.trim();
+  const pizzasize = document.getElementById('pizzasize').value;
+  const quantity = document.getElementById('quantity').value;
+
+  const spices = document.getElementsByName('spices');
+  const meat = document.getElementsByName('meat');
+
+  let spiceChecked = false;
+  for(let s of spices) {
+    if(s.checked) {
+      spiceChecked = true;
+      break;
+    }
+  }
+
+  let meatChecked = false;
+  for(let m of meat) {
+    if(m.checked) {
+      meatChecked = true;
+      break;
+    }
+  }
+
+  let errors = [];
+
+  if(fullname === '') errors.push("Full Name is required.");
+  if(street === '') errors.push("Street Address is required.");
+  if(!/^\d{10}$/.test(phone)) errors.push("Phone must be exactly 10 digits.");
+  if(!email.includes('@')) errors.push("Valid Email is required.");
+  if(password.length < 5 || password.length > 15) errors.push("Password must be 5 to 15 characters.");
+  if(cardtype === '') errors.push("Card Type must be selected.");
+  if(cardnumber === '') errors.push("Card Number is required.");
+  if(cardname === '') errors.push("Name on Card is required.");
+  if(pizzasize === '') errors.push("Pizza Size must be selected.");
+  if(quantity === '' || quantity <= 0) errors.push("Quantity must be a positive number.");
+  if(!spiceChecked) errors.push("At least one spice must be selected.");
+  if(!meatChecked) errors.push("Meat must be selected.");
+
+  if(errors.length > 0) {
+    alert(errors.join("\n"));
+    return false;
+  }
+
+  alert("Order placed successfully!");
+  return true;
+}
+</script>
+
+</body>
+</html>
